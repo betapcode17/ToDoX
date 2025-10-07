@@ -16,3 +16,5 @@ You can:
 - Building a Fullstack MERN application (MongoDB, Express, React, Node.js)
 - Structuring frontend & backend cleanly
 - Using Tailwind4 and shadcn/ui for beautiful UI
+
+<img width="985" height="486" alt="image" src="https://github.com/user-attachments/assets/468a38dc-8605-40d5-8448-462b2802de2a" />
