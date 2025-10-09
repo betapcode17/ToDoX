@@ -35,8 +35,7 @@ const HomePage = () => {
       toast.error("Lỗi xảy ra khi truy xuất tasks");
     }
   };
-
-  const handleTaskChange = () => {
+  const handleTaskChanged = () => {
     fetchTasks();
   };
 
@@ -69,7 +68,7 @@ const HomePage = () => {
           {/* Đầu trang */}
           <Header />
           {/* Tạo nhiệm vụ */}
-          <AddTask handleNewTaskAdded={handleTaskChange} />
+          <AddTask handleNewTaskAdded={handleTaskChanged} />
           {/* Thống kê và bộ lọc */}
           <StatsAndFilters
             filter={filter}
@@ -80,7 +79,7 @@ const HomePage = () => {
           {/* Danh sách nhiệm vụ */}
           <TaskList
             filteredTasks={filteredTasks}
-            handleTaskChanged={handleTaskChange}
+            handleTaskChanged={handleTaskChanged}
           />
           {/* Phân trang và lọc theo ngày */}
           <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">

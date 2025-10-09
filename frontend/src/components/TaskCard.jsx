@@ -20,11 +20,11 @@ const TaskCard = ({ task, index, handleTaskChanged }) => {
   const deleteTask = async (taskId) => {
     try {
       await api.delete(`/tasks/${taskId}`);
-      toast.success("Nhiệm vụ đã xoá.");
+      toast.success("タスクを削除しました。");
       handleTaskChanged();
     } catch (error) {
-      console.error("Lỗi xảy ra khi xoá task.", error);
-      toast.error("Lỗi xảy ra khi xoá nhiệm vụ mới.");
+      console.error("タスク削除中にエラーが発生しました。", error);
+      toast.error("タスク削除中にエラーが発生しました。");
     }
   };
 
@@ -34,11 +34,11 @@ const TaskCard = ({ task, index, handleTaskChanged }) => {
       await api.put(`/tasks/${task._id}`, {
         title: updateTaskTitle,
       });
-      toast.success(`Nhiệm vụ đã đổi thành ${updateTaskTitle}`);
+      toast.success(`タスク名を「${updateTaskTitle}」に変更しました。`);
       handleTaskChanged();
     } catch (error) {
-      console.error("Lỗi xảy ra khi update task.", error);
-      toast.error("Lỗi xảy ra khi cập nhập nhiệm vụ.");
+      console.error("タスク更新中にエラーが発生しました。", error);
+      toast.error("タスク更新中にエラーが発生しました。");
     }
   };
 
@@ -49,20 +49,18 @@ const TaskCard = ({ task, index, handleTaskChanged }) => {
           status: "complete",
           completedAt: new Date().toISOString(),
         });
-
-        toast.success(`${task.title} đã hoàn thành.`);
+        toast.success(`${task.title} を完了しました。`);
       } else {
         await api.put(`/tasks/${task._id}`, {
           status: "active",
           completedAt: null,
         });
-        toast.success(`${task.title} đã đổi sang chưa hoàn thành.`);
+        toast.success(`${task.title} を未完了に戻しました。`);
       }
-
       handleTaskChanged();
     } catch (error) {
-      console.error("Lỗi xảy ra khi update task.", error);
-      toast.error("Lỗi xảy ra khi cập nhập nhiệm vụ.");
+      console.error("タスク状態更新中にエラーが発生しました。", error);
+      toast.error("タスク状態更新中にエラーが発生しました。");
     }
   };
 
@@ -81,7 +79,6 @@ const TaskCard = ({ task, index, handleTaskChanged }) => {
       style={{ animationDelay: `${index * 50}ms` }}
     >
       <div className="flex items-center gap-4">
-        {/* nút tròn */}
         <Button
           variant="ghost"
           size="icon"
@@ -100,11 +97,10 @@ const TaskCard = ({ task, index, handleTaskChanged }) => {
           )}
         </Button>
 
-        {/* hiển thị hoặc chỉnh sửa tiêu đề */}
         <div className="flex-1 min-w-0">
           {isEditting ? (
             <Input
-              placeholder="Cần phải làm gì?"
+              placeholder="何をする？"
               className="flex-1 h-12 text-base border-border/50 focus:border-primary/50 focus:ring-primary/20"
               type="text"
               value={updateTaskTitle}
@@ -128,7 +124,6 @@ const TaskCard = ({ task, index, handleTaskChanged }) => {
             </p>
           )}
 
-          {/* ngày tạo & ngày hoàn thành */}
           <div className="flex items-center gap-2 mt-1">
             <Calendar className="size-3 text-muted-foreground" />
             <span className="text-xs text-muted-foreground">
@@ -146,9 +141,7 @@ const TaskCard = ({ task, index, handleTaskChanged }) => {
           </div>
         </div>
 
-        {/* nút chỉnh và xoá */}
         <div className="hidden gap-2 group-hover:inline-flex animate-slide-up">
-          {/* nút edit */}
           <Button
             variant="ghost"
             size="icon"
@@ -161,7 +154,6 @@ const TaskCard = ({ task, index, handleTaskChanged }) => {
             <SquarePen className="size-4" />
           </Button>
 
-          {/* nút xoá */}
           <Button
             variant="ghost"
             size="icon"
