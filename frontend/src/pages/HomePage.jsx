@@ -8,28 +8,49 @@ import DateTimeFilter from "../components/DateTimeFilter.jsx";
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
 import { toast } from "sonner";
-import axios from "axios";
+
+import api from "@/lib/axios.js";
 
 const HomePage = () => {
   //state lưu danh sách nhiệm vụ từ backend
   const [taskBuffer, setTaskBuffer] = useState([]);
-
+  const [activeTaskCount, setActiveTaskCount] = useState(0);
+  const [completeTaskCount, setCompleteTaskCount] = useState(0);
+  const [filter, setFilter] = useState("all");
   useEffect(() => {
-    fechTask();
+    fetchTasks();
   }, []);
 
   // goi api lay ds nv
-  const fechTask = async () => {
+  const fetchTasks = async () => {
     try {
-      const res = await axios.get("http://localhost:5001/api/tasks");
+      const res = await api.get("/tasks");
 
-      setTaskBuffer(res.data);
-      console.log(res.data);
+      setTaskBuffer(res.data.tasks);
+
+      setActiveTaskCount(res.data.activeCount);
+      setCompleteTaskCount(res.data.completeCount);
     } catch (error) {
       console.error("Lỗi xảy ra khi truy xuất tasks:", error);
       toast.error("Lỗi xảy ra khi truy xuất tasks");
     }
   };
+
+  const handleTaskChange = () => {
+    fetchTasks();
+  };
+
+  // biến danh sách nhiệm vụ đã lọc
+  const filteredTasks = taskBuffer.filter((task) => {
+    switch (filter) {
+      case "active":
+        return task.status === "active";
+      case "complete":
+        return task.status === "completed";
+      default:
+        return true;
+    }
+  });
 
   return (
     <div className="min-h-screen w-full bg-[#fefcff] relative">
@@ -48,11 +69,19 @@ const HomePage = () => {
           {/* Đầu trang */}
           <Header />
           {/* Tạo nhiệm vụ */}
-          <AddTask />
+          <AddTask handleNewTaskAdded={handleTaskChange} />
           {/* Thống kê và bộ lọc */}
-          <StatsAndFilters />
+          <StatsAndFilters
+            filter={filter}
+            setFilter={setFilter}
+            activeTasksCounts={activeTaskCount}
+            completedTasksCount={completeTaskCount}
+          />
           {/* Danh sách nhiệm vụ */}
-          <TaskList filteredTasks={taskBuffer} />
+          <TaskList
+            filteredTasks={filteredTasks}
+            handleTaskChanged={handleTaskChange}
+          />
           {/* Phân trang và lọc theo ngày */}
           <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
             <TaskListPagination />
