@@ -1,0 +1,21 @@
+{
+  "name": "todox",
+  "version": "1.0.0",
+  "description": "📝 TodoList App — MERN Fullstack\r - A simple Fullstack TodoList project built with MERN Stack to learn how to create a complete web application with a clean UI using Tailwind CSS 4 and shadcn/ui.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend ",
+    "start": "npm run start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/betapcode17/ToDoX.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/betapcode17/ToDoX/issues"
+  },
+  "homepage": "https://github.com/betapcode17/ToDoX#readme"
+}
