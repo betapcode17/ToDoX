@@ -17,5 +17,6 @@ You can:
 - Structuring frontend & backend cleanly
 - Using Tailwind4 and shadcn/ui for beautiful UI
 
-<img width="794" height="783" alt="image" src="https://github.com/user-attachments/assets/d71ab2e2-7127-44cb-baaf-1fe2e64009ba" />
+<img width="1470" height="878" alt="image" src="https://github.com/user-attachments/assets/c082c107-b57b-4966-abb3-be89d96ef2c1" />
+
 
