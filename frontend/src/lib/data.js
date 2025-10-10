@@ -1,7 +1,7 @@
 export const FilterType = {
   all: "すべて",
   active: "未完了",
-  completed: "完了",
+  complete: "完了",
 };
 
 export const options = [
@@ -22,3 +22,5 @@ export const options = [
     label: "すべて",
   },
 ];
+
+export const visibleTaskLimit = 4;

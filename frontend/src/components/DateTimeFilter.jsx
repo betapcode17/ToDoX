@@ -17,9 +17,13 @@ import {
 } from "@/components/ui/popover";
 
 import { options } from "@/lib/data";
-const DateTimeFilter = () => {
+
+const DateTimeFilter = ({ dateQuery, setDateQuery }) => {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
+
+  const selectedOption =
+    options.find((option) => option.value === dateQuery) || options[0];
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -28,12 +32,13 @@ const DateTimeFilter = () => {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className=""
+          className="flex items-center justify-between w-[200px]"
         >
-          今日
-          <ChevronsUpDown className="opacity-50" />
+          {selectedOption.label}
+          <ChevronsUpDown className="opacity-50 ml-2 h-4 w-4 shrink-0" />
         </Button>
       </PopoverTrigger>
+
       <PopoverContent className="w-[200px] p-0">
         <Command>
           <CommandList>
@@ -43,15 +48,15 @@ const DateTimeFilter = () => {
                   key={option.value}
                   value={option.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
+                    setDateQuery(currentValue);
                     setOpen(false);
                   }}
                 >
                   {option.label}
                   <Check
                     className={cn(
-                      "ml-auto",
-                      value === option.value ? "opacity-100" : "opacity-0"
+                      "ml-auto h-4 w-4",
+                      dateQuery === option.value ? "opacity-100" : "opacity-0"
                     )}
                   />
                 </CommandItem>
