@@ -1,5 +1,5 @@
 📝 TodoList App — MERN Fullstack
-- A simple Fullstack TodoList project built with MERN Stack to learn how to create a complete web application with a clean UI using Tailwind CSS 4 and shadcn/ui.
+- A simple Fullstack TodoList project built with MERN Stack to learn how to create a complete web application with a clean UI using Tailwind CSS 4, shadcn/ui and deploy with Vercel
   
 🌟 Overview
 - TodoList App helps users manage their daily tasks easily.
